@@ -1,0 +1,56 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.akw.dev",
+      "sha256_cert_fingerprints": [
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C",
+        "28:65:87:BB:83:07:2B:9B:6D:D8:16:ED:08:06:B8:3B:61:52:3A:75:27:2E:4A:8A:3B:5D:71:60:75:9A:F6:9B"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.akw.stg",
+      "sha256_cert_fingerprints": [
+        "28:65:87:BB:83:07:2B:9B:6D:D8:16:ED:08:06:B8:3B:61:52:3A:75:27:2E:4A:8A:3B:5D:71:60:75:9A:F6:9B"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.akunawallet.app.wallet.dev",
+      "sha256_cert_fingerprints": [
+        "D1:72:14:8E:29:85:B3:41:00:E6:B1:B8:6C:EC:82:A0:CB:FF:29:8F:B8:C8:10:F3:2C:CC:6B:C0:1D:B2:70:66",
+        "28:65:87:BB:83:07:2B:9B:6D:D8:16:ED:08:06:B8:3B:61:52:3A:75:27:2E:4A:8A:3B:5D:71:60:75:9A:F6:9B"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.akunawallet.app.wallet.stg",
+      "sha256_cert_fingerprints": [
+        "15:55:BB:40:8C:75:93:41:24:3C:3B:C4:E6:54:FC:78:53:84:3A:B0:15:BB:64:87:9B:F6:AC:E4:10:42:1E:0C",
+        "28:65:87:BB:83:07:2B:9B:6D:D8:16:ED:08:06:B8:3B:61:52:3A:75:27:2E:4A:8A:3B:5D:71:60:75:9A:F6:9B"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.akunawallet.app.wallet.prd",
+      "sha256_cert_fingerprints": [
+        "28:65:87:BB:83:07:2B:9B:6D:D8:16:ED:08:06:B8:3B:61:52:3A:75:27:2E:4A:8A:3B:5D:71:60:75:9A:F6:9B",
+        "08:84:EC:7C:D3:27:62:F5:B7:3B:F7:45:62:69:D4:06:CF:4A:2C:B0:FC:C6:DC:1B:9A:BD:B6:00:66:0C:1C:98"
+      ]
+    }
+  }
+]
