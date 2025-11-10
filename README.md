@@ -107,3 +107,11 @@ $ sh .husky/pre-push
 - Run `yarn build`
 - Copy the config file to `build/config/env-config.js`
 - Serve the `build` directory
+
+## Deploying
+
+### Dev
+
+- Build app using `yarn build`
+- Login to firebase `firebase login --reauth`
+- Deploy with `firebase deploy --public build --project akuna-wallet-dev-2`

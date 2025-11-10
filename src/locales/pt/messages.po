@@ -111,7 +111,7 @@ msgid "Please wait…"
 msgstr "Aguarde…"
 
 #: src/components/ConfirmVerificationCode.tsx:95
-#: src/components/SentVerificationEmail.tsx:46
+#: src/components/SentVerificationEmail.tsx:51
 msgid "Resend"
 msgstr "Reenviar"
 
