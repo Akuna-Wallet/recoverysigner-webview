@@ -1,28 +1,25 @@
-import { sendSignInLinkToEmail } from "firebase/auth";
-
-import { auth } from "config/firebase";
 import {
   SEND_VERIFICATION_EMAIL,
   sendVerificationEmail as action,
 } from "ducks/firebase";
 import { buildStatus } from "helpers/buildStatus";
-import { getFirebaseError } from "helpers/getFirebaseError";
 import { type DynamicLinkSettings } from "types/AppConfig";
 import { StatusType } from "types/Status";
 import type { AppDispatch } from "ducks/store";
 
 interface SendVerificationEmailParams {
   email: string;
-  dynamicLinkSettings: DynamicLinkSettings;
+  dynamicLinkSettings?: DynamicLinkSettings;
   dispatch: AppDispatch;
+  continueUrl?: string;
 }
 
 let isSending = false;
 
 export function sendVerificationEmail({
   email,
-  dynamicLinkSettings,
   dispatch,
+  continueUrl,
 }: SendVerificationEmailParams) {
   if (isSending) {
     return;
@@ -33,16 +30,39 @@ export function sendVerificationEmail({
   const setStatus = buildStatus(SEND_VERIFICATION_EMAIL, dispatch);
   setStatus(StatusType.loading);
 
-  sendSignInLinkToEmail(auth(), email, dynamicLinkSettings)
+  recoverAccount(email, continueUrl)
     .then(() => {
       dispatch(action());
       setStatus(StatusType.success);
       isSending = false;
     })
     .catch((error) => {
-      const message = getFirebaseError(error);
+      if ((window as any).Sentry) {
+        (window as any).Sentry.captureException(
+          error instanceof Error ? error : new Error(String(error)),
+        );
+      }
 
-      setStatus(StatusType.error, new Error(message));
+      setStatus(StatusType.error, error);
       isSending = false;
     });
+}
+
+async function recoverAccount(email: string, continueUrl?: string) {
+  const appEnv = (window as any).APP_ENV;
+  const endpoint = `${appEnv.BASE_API_URL}/api/v1/users/recover-account`;
+
+  const useContinueUrl = continueUrl || appEnv.DEFAULT_CONTINUE_URL;
+
+  const res = await fetch(endpoint, {
+    method: "POST",
+    body: JSON.stringify({ email, continueUrl: useContinueUrl }),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to send recovery email: ${await res.text()}`);
+  }
+
+  return true;
 }

@@ -12,7 +12,9 @@
     FIREBASE_WEB_API_KEY: "your firebase web api key",
     FIREBASE_PROJECT_ID: "your firebase project id",
     LOGO_URL: "https://example.com/logo.svg",
-    BUTTON_COLOR: "#000",
+    BASE_API_URL: "https://api.example.com",
+    // Required because old app versions don't supply `continueUrl`
+    DEFAULT_CONTINUE_URL: "https://akuna-wallet-dev-2.web.app"
   };
   ```
 - Install the [Firebase CLI](https://firebase.google.com/docs/cli)

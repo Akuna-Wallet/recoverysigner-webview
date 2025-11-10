@@ -9,6 +9,7 @@ export interface State {
 
   email?: string;
   dynamicLinkSettings?: DynamicLinkSettings;
+  continueUrl?: string;
 
   signInLink?: string;
 

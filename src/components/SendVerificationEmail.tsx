@@ -14,16 +14,16 @@ import { useAppDispatch } from "hooks/useAppDispatch";
 export function SendVerificationEmail() {
   const dispatch = useAppDispatch();
   const sendEmailStatus = useStatus(SEND_VERIFICATION_EMAIL);
-  const { email, dynamicLinkSettings } = useSelector((state: State) => state);
+  const { email, continueUrl } = useSelector((state: State) => state);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const sendVerificationEmailDebounce = useCallback(
     debounce(() => {
-      if (email && dynamicLinkSettings) {
-        sendVerificationEmail({ email, dynamicLinkSettings, dispatch });
+      if (email) {
+        sendVerificationEmail({ email, continueUrl, dispatch });
       }
     }, 1000),
-    [email, dynamicLinkSettings, dispatch],
+    [email, continueUrl, dispatch],
   );
 
   useEffect(() => {

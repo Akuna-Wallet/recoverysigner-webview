@@ -41,7 +41,12 @@ export function SentVerificationEmail() {
       <div style={{ height: 30 }} />
 
       <p className="text-center">
-        <button className="button-link" type="button" onClick={handleResend}>
+        <button
+          className="button-link"
+          style={{ fontWeight: "bold", color: "white" }}
+          type="button"
+          onClick={handleResend}
+        >
           <span>
             <Trans>Resend</Trans>
           </span>

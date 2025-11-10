@@ -16,14 +16,18 @@ export function Landing() {
       // auth with phone
       if (phoneNumber) {
         dispatch(setPage(Page.sendVerificationCode));
+        return;
       }
-      // auth with email
-      if (email && dynamicLinkSettings) {
-        dispatch(setPage(Page.sendVerificationEmail));
-      }
+
       // confirm auth with email
       if (email && signInLink) {
         dispatch(setPage(Page.confirmVerificationEmail));
+        return;
+      }
+
+      // auth with email
+      if (email) {
+        dispatch(setPage(Page.sendVerificationEmail));
       }
     }
   }, [
