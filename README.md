@@ -115,3 +115,8 @@ $ sh .husky/pre-push
 - Build app using `yarn build`
 - Login to firebase `firebase login --reauth`
 - Deploy with `firebase deploy --public build --project akuna-wallet-dev-2`
+
+### Prod
+
+Consult ultrastellar in the slack channel `#ext-ckl-ultrastellar-sdf` (contact person: Maxim Lomakin
+ )
