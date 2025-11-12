@@ -63,13 +63,7 @@ Run the following script in your browser console:
 main({
   email: "jordyn@example.com",
   // These settings are used by Firebase to generate a dynamic sign-in link
-  dynamicLinkSettings: {
-    url: "https://example.com/auth-email",
-    android: { installApp: true, packageName: "io.example.app" },
-    iOS: { bundleId: "io.example.app" },
-    handleCodeInApp: true,
-    linkDomain: "example.com",
-  },
+  continueUrl: string;
 });
 ```
 
