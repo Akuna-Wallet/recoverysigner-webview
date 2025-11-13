@@ -29,6 +29,13 @@
           "NOT /_/*",
           "/*"
         ]
+      },
+      {
+        "appID": "FGA799UPZA.com.akunawallet.app.wallet.prd",
+        "paths": [
+          "NOT /_/*",
+          "/*"
+        ]
       }
     ]
   }
