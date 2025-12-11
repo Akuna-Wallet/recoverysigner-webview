@@ -16,69 +16,69 @@ import { signInWithCustomToken } from "firebase/auth";
 window.Sentry = Sentry;
 
 if (window.APP_ENV) {
-	Sentry.init({
-		dsn: window.APP_ENV.SENTRY_DSN,
-	});
+  Sentry.init({
+    dsn: window.APP_ENV.SENTRY_DSN,
+  });
 }
 
 let root: Root | null = null;
 
 window.getIdToken = async (customToken: string) => {
-	initializeFirebase({
-		apiKey: window.APP_ENV.FIREBASE_WEB_API_KEY,
-		projectId: window.APP_ENV.FIREBASE_PROJECT_ID,
-	});
+  initializeFirebase({
+    apiKey: window.APP_ENV.FIREBASE_WEB_API_KEY,
+    projectId: window.APP_ENV.FIREBASE_PROJECT_ID,
+  });
 
-	try {
-		const user = await signInWithCustomToken(auth(), customToken);
-		const idToken = await user.user?.getIdToken();
+  try {
+    const user = await signInWithCustomToken(auth(), customToken);
+    const idToken = await user.user?.getIdToken();
 
-		console.log("resolved token", idToken);
+    console.log("resolved token", idToken);
 
-		window.postMessage(
-			JSON.stringify({ type: "idToken", idToken }),
-			window.location.origin,
-		);
-	} catch (err) {
-		console.error("failed to resolve token", err);
-		window.postMessage(
-			JSON.stringify({ type: "error", error: (err as Error).message }),
-			window.location.origin,
-		);
-	}
+    window.postMessage(
+      JSON.stringify({ type: "idToken", idToken }),
+      window.location.origin,
+    );
+  } catch (err) {
+    console.error("failed to resolve token", err);
+    window.postMessage(
+      JSON.stringify({ type: "error", error: (err as Error).message }),
+      window.location.origin,
+    );
+  }
 };
 
 window.main = function main(config: AppConfig) {
-	window.wasInitted = true;
+  window.wasInitted = true;
 
-	const appEnv = window.APP_ENV;
-	const language = determineLanguage(config.language || "en");
+  const appEnv = window.APP_ENV;
+  const language = determineLanguage(config.language || "en");
 
-	initializeFirebase({
-		apiKey: appEnv.FIREBASE_WEB_API_KEY,
-		projectId: appEnv.FIREBASE_PROJECT_ID,
-	});
+  initializeFirebase({
+    apiKey: appEnv.FIREBASE_WEB_API_KEY,
+    projectId: appEnv.FIREBASE_PROJECT_ID,
+  });
 
-	auth().languageCode = language;
+  auth().languageCode = language;
 
-	i18n.activate(language);
+  i18n.activate(language);
 
-	const rootElement = document.getElementById("root");
-	if (!rootElement) {
-		throw new Error("Root element not found in the DOM.");
-	}
+  const rootElement = document.getElementById("root");
+  if (!rootElement) {
+    throw new Error("Root element not found in the DOM.");
+  }
 
-	if (!root) {
-		root = createRoot(rootElement);
-	}
+  if (!root) {
+    root = createRoot(rootElement);
+  }
 
-	root.render(
-		<React.StrictMode>
-			<Provider store={store}>
-				<I18nProvider i18n={i18n}>
-					<App config={{ ...config }} />
-				</I18nProvider>
-			</Provider>
-		</React.StrictMode>,
-	);
+  root.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <I18nProvider i18n={i18n}>
+          <App config={{ ...config }} />
+        </I18nProvider>
+      </Provider>
+    </React.StrictMode>,
+  );
 };
