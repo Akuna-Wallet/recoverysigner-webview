@@ -25,7 +25,7 @@ yarn-error.log*
 /.firebaserc
 /.firebase
 
-/public/config/*
+/public/config/env-config.js
 /src/locales/**/*.js
 /src/locales/**/*.ts
 /src/locales/_build/
